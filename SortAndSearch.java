@@ -1,5 +1,4 @@
 
-```java
 public class SelectionSorter {
     public static void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -35,6 +34,10 @@ public class SelectionSorter {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Исходный массив: [23, 56, 21, 41, 12]
+// Отсортированный массив: [12, 21, 23, 41, 56]
 public class BubbleSorter {
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
@@ -67,6 +70,46 @@ public class BubbleSorter {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Исходный массив: [64, 34, 25, 12, 22, 11, 90]
+// Отсортированный массив: [11, 12, 22, 25, 34, 64, 90]
+public class InsertionSorter {
+    public static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] testArray = {9, 5, 1, 4, 3};
+        System.out.print("Исходный массив: ");
+        printArray(testArray);
+        insertionSort(testArray);
+        System.out.print("Отсортированный массив: ");
+        printArray(testArray);
+    }
+
+    public static void printArray(int[] arr) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+            if (i < arr.length - 1) System.out.print(", ");
+        }
+        System.out.println("]");
+    }
+}
+
+// Вывод программы:
+// Исходный массив: [9, 5, 1, 4, 3]
+// Отсортированный массив: [1, 3, 4, 5, 9]
 public class MergeSorter {
     public static void mergeSort(int[] arr) {
         if (arr.length < 2) return;
@@ -116,6 +159,10 @@ public class MergeSorter {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Исходный массив: [38, 27, 43, 3, 9, 82, 10]
+// Отсортированный массив: [3, 9, 10, 27, 38, 43, 82]
 public class ShellSorter {
     public static void shellSort(int[] arr) {
         int n = arr.length;
@@ -150,6 +197,10 @@ public class ShellSorter {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Исходный массив: [23, 12, 1, 8, 34, 54, 2, 3]
+// Отсортированный массив: [1, 2, 3, 8, 12, 23, 34, 54]
 public class HeapSorter {
     public static void heapSort(int[] arr) {
         int n = arr.length;
@@ -204,6 +255,10 @@ public class HeapSorter {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Исходный массив: [4, 10, 3, 5, 1]
+// Отсортированный массив: [1, 3, 4, 5, 10]
 public class LinearSearch {
     public static int linearSearch(int[] arr, int target) {
         for (int i = 0; i < arr.length; i++) {
@@ -221,6 +276,11 @@ public class LinearSearch {
         printArray(testArray);
         int result = linearSearch(testArray, target);
         System.out.println("Элемент " + target + " найден на позиции: " + result);
+        
+        // Дополнительный тест
+        target = 100;
+        result = linearSearch(testArray, target);
+        System.out.println("Элемент " + target + " найден на позиции: " + result);
     }
 
     public static void printArray(int[] arr) {
@@ -232,6 +292,48 @@ public class LinearSearch {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Массив: [2, 5, 8, 12, 16, 23, 38, 45]
+// Элемент 16 найден на позиции: 4
+// Элемент 100 найден на позиции: -1
+public class BinarySearch {
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target) return mid;
+            if (arr[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] testArray = {2, 5, 8, 12, 16, 23, 38, 45, 67, 89};
+        int target = 23;
+        System.out.print("Массив: ");
+        printArray(testArray);
+        int result = binarySearch(testArray, target);
+        System.out.println("Элемент " + target + " найден на позиции: " + result);
+    }
+
+    public static void printArray(int[] arr) {
+        System.out.print("[");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+            if (i < arr.length - 1) System.out.print(", ");
+        }
+        System.out.println("]");
+    }
+}
+
+// Вывод программы:
+// Массив: [2, 5, 8, 12, 16, 23, 38, 45, 67, 89]
+// Элемент 23 найден на позиции: 5
 public class InterpolationSearch {
     public static int interpolationSearch(int[] arr, int target) {
         int low = 0;
@@ -259,6 +361,11 @@ public class InterpolationSearch {
         printArray(testArray);
         int result = interpolationSearch(testArray, target);
         System.out.println("Элемент " + target + " найден на позиции: " + result);
+        
+        // Тест с отсутствующим элементом
+        target = 55;
+        result = interpolationSearch(testArray, target);
+        System.out.println("Элемент " + target + " найден на позиции: " + result);
     }
 
     public static void printArray(int[] arr) {
@@ -270,6 +377,11 @@ public class InterpolationSearch {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Массив: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+// Элемент 60 найден на позиции: 5
+// Элемент 55 найден на позиции: -1
 public class FibonacciSearch {
     public static int fibonacciSearch(int[] arr, int target) {
         int fibMMm2 = 0;
@@ -314,6 +426,11 @@ public class FibonacciSearch {
         printArray(testArray);
         int result = fibonacciSearch(testArray, target);
         System.out.println("Элемент " + target + " найден на позиции: " + result);
+        
+        // Тест с другим элементом
+        target = 35;
+        result = fibonacciSearch(testArray, target);
+        System.out.println("Элемент " + target + " найден на позиции: " + result);
     }
 
     public static void printArray(int[] arr) {
@@ -325,3 +442,8 @@ public class FibonacciSearch {
         System.out.println("]");
     }
 }
+
+// Вывод программы:
+// Массив: [10, 22, 35, 40, 45, 50, 80, 82, 85, 90, 100]
+// Элемент 85 найден на позиции: 8
+// Элемент 35 найден на позиции: 2
